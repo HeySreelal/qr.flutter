@@ -28,6 +28,7 @@ const Color? _qrDefaultColor = null;
 class QrPainter extends CustomPainter {
   /// Create a new QRPainter with passed options (or defaults).
   QrPainter({
+    double gapSize = 2.0,
     required String data,
     required this.version,
     this.errorCorrectionLevel = QrErrorCorrectLevel.L,
@@ -48,7 +49,8 @@ class QrPainter extends CustomPainter {
       'You should use the background color value of your container widget',
     )
     this.emptyColor,
-  }) : assert(
+  })  : _gapSize = gapSize,
+        assert(
           QrVersions.isSupportedVersion(version),
           'QR code version $version is not supported',
         ) {
@@ -61,6 +63,7 @@ class QrPainter extends CustomPainter {
   QrPainter.withQr({
     required QrCode qr,
     this.gapless = false,
+    double gapSize = 2.0,
     this.embeddedImage,
     this.embeddedImageStyle,
     this.eyeStyle = const QrEyeStyle(
@@ -79,7 +82,8 @@ class QrPainter extends CustomPainter {
     this.emptyColor,
   })  : _qr = qr,
         version = qr.typeNumber,
-        errorCorrectionLevel = qr.errorCorrectLevel {
+        errorCorrectionLevel = qr.errorCorrectLevel,
+        _gapSize = gapSize {
     _calcVersion = version;
     _initPaints();
   }
@@ -118,7 +122,7 @@ class QrPainter extends CustomPainter {
   late final int _calcVersion;
 
   /// The size of the 'gap' between the pixels
-  final double _gapSize = 0.25;
+  final double _gapSize;
 
   /// Cache for all of the [Paint] objects.
   final PaintCache _paintCache = PaintCache();
