@@ -60,7 +60,6 @@ enum QrDataModuleShape {
 }
 
 /// Styling options for finder pattern eye.
-@immutable
 class QrEyeStyle {
   /// Create a new set of styling options for QR Eye.
   const QrEyeStyle({this.eyeShape, this.color});
@@ -84,7 +83,6 @@ class QrEyeStyle {
 }
 
 /// Styling options for data module.
-@immutable
 class QrDataModuleStyle {
   /// Create a new set of styling options for data modules.
   const QrDataModuleStyle({
@@ -111,7 +109,6 @@ class QrDataModuleStyle {
 }
 
 /// Styling options for any embedded image overlay
-@immutable
 class QrEmbeddedImageStyle {
   /// Create a new set of styling options.
   const QrEmbeddedImageStyle({
